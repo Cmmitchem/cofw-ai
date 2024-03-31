@@ -1,58 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-//import { Amplify } from 'aws-amplify';
-//import amplifyconfig from './amplifyconfiguration.json';
-//Amplify.configure(amplifyconfig);
+//import React from "react";
+import logo from "./logo.svg";
+import "@aws-amplify/ui-react/styles.css";
+//import './App.css';
 
-import { useState } from 'react';
-import PDFViewer from './pdfInput';
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
-function App() {
-  const [prompt, setPrompt] = useState('')
-
-  const handleChange = e => {
-    setPrompt(e.target.value);
-  }
-
-  const handleClick = e => {
-    e.preventDefault();
-    console.log(prompt);
-  }
-
-  
-  
+function App({ signOut }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Insert Prompt Below: 
-        </p>
-
-        <input 
-          className='text-input'
-          type="text"
-          name="instruction"
-          onChange={handleChange} 
-          value={prompt}
-        />
-        <PDFViewer className='file-input'></PDFViewer>
-
-        <button className='button'onClick={handleClick}> Generate Response</button>
-        <div>
-
-        </div>
-        <a
-          className="City of Fort Worth"
-          href="https://www.fortworthtexas.gov/Home"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          City of Fort Worth
-        </a>
-      </header>
-    </div>
+    <View className="App">
+      <Card>
+        <Image src={logo} className="App-logo" alt="logo" />
+        <Heading level={1}>We now have Auth!</Heading>
+      </Card>
+      <Button onClick={signOut}>Sign Out</Button>
+    </View>
   );
 }
 
-export default App;
+export default withAuthenticator(App);
+//export default App;
