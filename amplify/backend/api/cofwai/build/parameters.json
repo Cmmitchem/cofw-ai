@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "cofwai",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "S3DeploymentBucket": "amplify-amplify10a56e536cf54-staging-194814-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/af18ddd9031953b21d0a8b426ea0ba4feab9c746"
+}

@@ -1,0 +1,14 @@
+{
+  "resourceName": "platstorage",
+  "policyUUID": "1ba42b21",
+  "bucketName": "cofwaiplatstorage",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

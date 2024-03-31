@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "cofwaid9e6378c": {}
+      },
+      "api": {
+        "cofwai": {}
+      },
+      "storage": {
+        "platstorage": {}
       }
     }
   }

@@ -40,7 +40,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/auth/cofwaid9e6378c-cloudformation-template.json",
         "logicalId": "authcofwaid9e6378c"
       },
-      "lastPushTimeStamp": "2024-03-31T20:13:56.763Z",
+      "lastPushTimeStamp": "2024-03-31T21:44:40.163Z",
       "output": {
         "UserPoolId": "us-east-1_oOTnKFQhz",
         "AppClientIDWeb": "78sqkdlmu908d6tjrkjb59m7dk",
@@ -51,6 +51,50 @@
         "UserPoolName": "cofwaid9e6378c_userpool_d9e6378c"
       },
       "lastPushDirHash": "XJ7TOVF8TA+pUhW+ntX4e1gNqL0="
+    }
+  },
+  "api": {
+    "cofwai": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        },
+        "GraphQLAPIIdOutput": "cvqkd4lycreqbpqnidvitc2eba",
+        "GraphQLAPIEndpointOutput": "https://ynzjkhof45fhzo6tfhlyqkwy34.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-adikpguzkvdb3nek62c4qcbhga"
+      },
+      "lastPushTimeStamp": "2024-03-31T21:44:42.067Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apicofwai"
+      },
+      "lastPushDirHash": "rfX6aSlz5vO+ckJtYAZuGt8FtdA="
+    }
+  },
+  "storage": {
+    "platstorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "lastPushTimeStamp": "2024-03-31T21:44:42.067Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storageplatstorage"
+      },
+      "output": {
+        "BucketName": "cofwaiplatstorage194814-staging",
+        "Region": "us-east-1"
+      },
+      "lastPushDirHash": "fguJP8hzpQTw0wXyxsODtYFQrYw="
     }
   }
 }
