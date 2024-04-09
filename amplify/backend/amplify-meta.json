@@ -40,7 +40,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/auth/cofwaid9e6378c-cloudformation-template.json",
         "logicalId": "authcofwaid9e6378c"
       },
-      "lastPushTimeStamp": "2024-03-31T21:44:40.163Z",
+      "lastPushTimeStamp": "2024-04-09T20:07:49.558Z",
       "output": {
         "UserPoolId": "us-east-1_oOTnKFQhz",
         "AppClientIDWeb": "78sqkdlmu908d6tjrkjb59m7dk",
@@ -72,12 +72,37 @@
         "GraphQLAPIEndpointOutput": "https://ynzjkhof45fhzo6tfhlyqkwy34.appsync-api.us-east-1.amazonaws.com/graphql",
         "GraphQLAPIKeyOutput": "da2-adikpguzkvdb3nek62c4qcbhga"
       },
-      "lastPushTimeStamp": "2024-03-31T21:44:42.067Z",
+      "lastPushTimeStamp": "2024-04-09T20:07:49.560Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apicofwai"
       },
       "lastPushDirHash": "rfX6aSlz5vO+ckJtYAZuGt8FtdA="
+    },
+    "cofwplatapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "cofwai7eedf3d5",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ],
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/api/cofwplatapi-cloudformation-template.json",
+        "logicalId": "apicofwplatapi"
+      },
+      "lastPushTimeStamp": "2024-04-09T20:07:49.561Z",
+      "output": {
+        "ApiName": "cofwplatapi",
+        "RootUrl": "https://9xp6d8ig23.execute-api.us-east-1.amazonaws.com/staging",
+        "ApiId": "9xp6d8ig23"
+      },
+      "lastPushDirHash": "UfrbBG0UFsqx/yuAsF5AbC07+I8="
     }
   },
   "storage": {
@@ -85,7 +110,7 @@
       "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "lastPushTimeStamp": "2024-03-31T21:44:42.067Z",
+      "lastPushTimeStamp": "2024-04-09T20:07:50.624Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storageplatstorage"
@@ -95,6 +120,43 @@
         "Region": "us-east-1"
       },
       "lastPushDirHash": "fguJP8hzpQTw0wXyxsODtYFQrYw="
+    }
+  },
+  "function": {
+    "cofwai7eedf3d5": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "platstorage",
+          "attributes": [
+            "BucketName"
+          ]
+        }
+      ],
+      "lastBuildTimeStamp": "2024-04-01T17:19:55.120Z",
+      "lastBuildType": "PROD",
+      "lastPackageTimeStamp": "2024-04-01T17:19:57.808Z",
+      "distZipFilename": "cofwai7eedf3d5-2b436e714a71586a6d34-build.zip",
+      "s3Bucket": {
+        "deploymentBucketName": "amplify-amplify10a56e536cf54-staging-194814-deployment",
+        "s3Key": "amplify-builds/cofwai7eedf3d5-2b436e714a71586a6d34-build.zip"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/function/cofwai7eedf3d5-cloudformation-template.json",
+        "logicalId": "functioncofwai7eedf3d5"
+      },
+      "lastPushTimeStamp": "2024-04-09T20:07:49.569Z",
+      "output": {
+        "LambdaExecutionRoleArn": "arn:aws:iam::656437073788:role/cofwaiLambdaRole6f30746b-staging",
+        "Region": "us-east-1",
+        "Arn": "arn:aws:lambda:us-east-1:656437073788:function:cofwai7eedf3d5-staging",
+        "Name": "cofwai7eedf3d5-staging",
+        "LambdaExecutionRole": "cofwaiLambdaRole6f30746b-staging"
+      },
+      "lastPushDirHash": "+CnqJqXjm4rR642kUQRMUB9yMDc="
     }
   }
 }

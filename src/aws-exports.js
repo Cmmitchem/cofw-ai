@@ -28,6 +28,13 @@ const awsmobile = {
     "aws_appsync_region": "us-east-1",
     "aws_appsync_authenticationType": "API_KEY",
     "aws_appsync_apiKey": "da2-adikpguzkvdb3nek62c4qcbhga",
+    "aws_cloud_logic_custom": [
+        {
+            "name": "cofwplatapi",
+            "endpoint": "https://9xp6d8ig23.execute-api.us-east-1.amazonaws.com/staging",
+            "region": "us-east-1"
+        }
+    ],
     "aws_user_files_s3_bucket": "cofwaiplatstorage194814-staging",
     "aws_user_files_s3_bucket_region": "us-east-1"
 };

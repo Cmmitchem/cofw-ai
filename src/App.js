@@ -1,5 +1,5 @@
 // Put your code below this line.
-
+// https://docs.amplify.aws/javascript/build-a-backend/storage/storage-v5-to-v6-migration-guide/ REFER TO THIS FOR AWS AMPLIFY FUNCTIONS
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
@@ -18,8 +18,8 @@ import {
   createNote as createNoteMutation,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
-import { generateClient } from 'aws-amplify/api';
-import { uploadData, getUrl } from 'aws-amplify/storage';
+import { generateClient, get, put } from 'aws-amplify/api';
+import { uploadData, getUrl, remove } from 'aws-amplify/storage';
 
 const client = generateClient();
 
@@ -27,10 +27,44 @@ const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
-    fetchNotes();
+    getRestData();
   }, []);
+  
 
-  // funtion to fetchNotes to fetch an image if there is an image associate with a note
+  // this function connects to the REST api, and retrieves all data from the api
+  async function getRestData() {
+    try {
+      const restOperation = get({ 
+        apiName: 'cofwplatapi',
+        path: '/embeddings' 
+      });
+      const response = await restOperation.response;
+      console.log('GET call succeeded: ', response);
+    } catch (e) {
+      console.log('GET call failed: ', JSON.parse(e.response.body));
+    }
+  }
+  
+  // this function updates data to the REST api and the dynamodb database
+  async function updateRestData() {
+    try {
+      const info = { name: 'My first todo', content: 'Hello world!' };
+      const restOperation = put({
+        apiName: 'cofwplatapi',
+        path: '/embeddings/1',
+        options: {
+          body: info
+        }
+      });
+      const response = await restOperation.response;
+      console.log('PUT call succeeded: ', response);
+    } catch (e) {
+      console.log('PUT call failed: ', JSON.parse(e.response.body));
+    }
+  }
+
+
+  // funtion to fetchNotes to fetch an image if there is an image associated with a note
   async function fetchNotes() {
     const apiData = await client.graphql({ query: listNotes });
     const notesFromAPI = apiData.data.listNotes.items;
@@ -46,14 +80,14 @@ const App = ({ signOut }) => {
     setNotes(notesFromAPI);
   }
 
-  // createNote function add teh image to the local image array if an image is associated with the note
+  // createNote function add the image to the local image array if an image is associated with the note
   async function createNote(event) {
     event.preventDefault();
     const form = new FormData(event.target);
     const image = form.get("image");
     const data = {
       name: form.get("name"),
-      description: form.get("description"),
+      //description: form.get("description"),
       image: image.name,
     };
     if (!!data.image) await uploadData(data.name, image);
@@ -69,7 +103,7 @@ const App = ({ signOut }) => {
   async function deleteNote({ id, name }) {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
-    await Storage.remove(name);
+    await remove(name);
     await client.graphql({
       query: deleteNoteMutation,
       variables: { input: { id } },
@@ -78,7 +112,7 @@ const App = ({ signOut }) => {
 
   return (
     <View className="App">
-      <Heading level={1}>My Notes App</Heading>
+      <Heading level={1}>COFW AI Plat Analyzer</Heading>
       <View as="form" margin="3rem 0" onSubmit={createNote}>
         <Flex direction="row" justifyContent="center">
           <TextField
@@ -89,14 +123,7 @@ const App = ({ signOut }) => {
             variation="quiet"
             required
           />
-          <TextField
-            name="description"
-            placeholder="Note Description"
-            label="Note Description"
-            labelHidden
-            variation="quiet"
-            required
-          />
+          
           <Button type="submit" variation="primary">
             Create Note
           </Button>
@@ -120,7 +147,7 @@ const App = ({ signOut }) => {
             <Text as="strong" fontWeight={700}>
             {note.name}
             </Text>
-            <Text as="span">{note.description}</Text>
+            
             {note.image && (
             <Image
                 src={note.image}
@@ -135,6 +162,8 @@ const App = ({ signOut }) => {
         ))}
       </View>
       <Button onClick={signOut}>Sign Out</Button>
+      <Button onClick={getRestData}>Get REST API data</Button>
+      <Button onClick={updateRestData}>Post REST API data</Button>
     </View>
   );
 };

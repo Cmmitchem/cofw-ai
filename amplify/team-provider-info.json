@@ -16,10 +16,17 @@
         "cofwaid9e6378c": {}
       },
       "api": {
-        "cofwai": {}
+        "cofwai": {},
+        "cofwplatapi": {}
       },
       "storage": {
         "platstorage": {}
+      },
+      "function": {
+        "cofwai7eedf3d5": {
+          "deploymentBucketName": "amplify-amplify10a56e536cf54-staging-194814-deployment",
+          "s3Key": "amplify-builds/cofwai7eedf3d5-2b436e714a71586a6d34-build.zip"
+        }
       }
     }
   }

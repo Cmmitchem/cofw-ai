@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "platstorage": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

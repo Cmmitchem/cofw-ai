@@ -219,6 +219,27 @@
         }
       }
     },
+    "apicofwplatapi": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/api/cofwplatapi-cloudformation-template.json",
+        "Parameters": {
+          "functioncofwai7eedf3d5Name": {
+            "Fn::GetAtt": [
+              "functioncofwai7eedf3d5",
+              "Outputs.Name"
+            ]
+          },
+          "functioncofwai7eedf3d5Arn": {
+            "Fn::GetAtt": [
+              "functioncofwai7eedf3d5",
+              "Outputs.Arn"
+            ]
+          },
+          "env": "staging"
+        }
+      }
+    },
     "storageplatstorage": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
@@ -248,6 +269,23 @@
           "s3PermissionsAuthenticatedUploads": "s3:PutObject",
           "s3PermissionsGuestPublic": "DISALLOW",
           "s3PermissionsGuestUploads": "DISALLOW",
+          "env": "staging"
+        }
+      }
+    },
+    "functioncofwai7eedf3d5": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify10a56e536cf54-staging-194814-deployment/amplify-cfn-templates/function/cofwai7eedf3d5-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-amplify10a56e536cf54-staging-194814-deployment",
+          "s3Key": "amplify-builds/cofwai7eedf3d5-2b436e714a71586a6d34-build.zip",
+          "storageplatstorageBucketName": {
+            "Fn::GetAtt": [
+              "storageplatstorage",
+              "Outputs.BucketName"
+            ]
+          },
           "env": "staging"
         }
       }
